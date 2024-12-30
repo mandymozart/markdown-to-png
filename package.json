@@ -1,0 +1,38 @@
+{
+  "name": "markdown-to-png",
+  "author": "Mandy Mozart",
+  "license": "MIT",
+  "description": "A NodeJS library to turn markdown files to PNG images",
+  "version": "0.1.4",
+  "type": "module",
+  "module": "dist/index.esm.js",
+  "dependencies": {
+    "markdown-it": "^14.1.0",
+    "puppeteer": "^23.11.1",
+    "yargs": "^17.7.2"
+  },
+  "scripts": {
+    "build": "vite build",
+    "prepublishOnly": "vite build"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "src/index.js",
+    "src/sample.md",
+    "src/layout.html"
+  ],
+  "devDependencies": {
+    "vite": "^6.0.6"
+  },
+  "keywords": [
+    "markdown",
+    "png",
+    "convert",
+    "instagram",
+    "twitter",
+    "tiktok",
+    "social media",
+    "image post"
+  ]
+}
