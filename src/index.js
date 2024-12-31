@@ -9,9 +9,9 @@ import path from "path";
 const md = new (await import("markdown-it")).default();
 
 const dimensions = {
-  portrait: { width: 1080, height: 1920 }, // Portrait: 1080x1920
-  square: { width: 1080, height: 1080 }, // Square: 1080x1080
-  landscape: { width: 1920, height: 1080 }, // Landscape: 1920x1080
+  portrait: { width: 1080, height: 1920, charactersPerPage: 67 }, // Portrait: 1080x1920
+  square: { width: 1080, height: 1080, charactersPerPage: 30 }, // Square: 1080x1080
+  landscape: { width: 1920, height: 1080, charactersPerPage: 65 }, // Landscape: 1920x1080
 };
 
 /**
@@ -71,17 +71,25 @@ async function markdownToPng(
   options
 ) {
   // Set the correct dimensions based on the selected layout
-  const { width, height } = dimensions[options.layout];
+  const { width, height, charactersPerPage } = dimensions[options.layout];
   console.log(`Layout: ${options.layout} (${width}x${height})`);
 
   const metaData = parseMeta(markdownText);
-  const chunks = splitTextIntoChunks(markdownText, options.charactersPerPage);
+  const chunks = splitTextIntoChunks(
+    markdownText,
+    charactersPerPage,
+    options.limit
+  );
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+  });
   const page = await browser.newPage();
 
   // If metadata exists, generate the first page with the metadata
   if (metaData) {
+    console.log("Metadata found in the markdown file. Marking as page 1.");
     const metaContent = generateMetaContent(metaData);
     await generatePageFromTemplate(
       page,

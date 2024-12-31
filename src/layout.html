@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <style>
+      :root {
+        --dark-purple: #2a004e;
+        --medium-purple: #500073;
+        --dark-orange: #c62300;
+        --bright-orange: #f14a00;
+
+        --primary-color: #ff6719;
+        --text-color: #ffffff;
+        --font-family: Arial, sans-serif;
+        --padding: 2rem;
+
+        /* Layout variables passed from script */
+        --page-width:  /*$width*/ px; /* Default value, will be overridden */
+        --page-height: /*$height*/ px; /* Default value, will be overridden */
+        --page-padding-top: 10rem; /* Default value, will be overridden */
+        --page-padding-bottom: 4rem; /* Default value, will be overridden */
+      }
+
+      [data-theme="monochrome"] {
+        --primary-color: #fff;
+        --text-color: #000;
+      }
+
+      [data-theme="dark-purple"] {
+        --primary-color: var(--dark-purple);
+        --text-color: var(--dark-orange);
+      }
+
+      [data-theme="medium-purple"] {
+        --primary-color: var(--medium-purple);
+        --text-color: #fff;
+      }
+
+      [data-theme="dark-orange"] {
+        --primary-color: var(--dark-orange);
+        --text-color: #fff;
+      }
+
+      [data-theme="bright-orange"] {
+        --primary-color: var(--bright-orange);
+        --text-color: #fff;
+      }
+
+      [data-layout="portrait"] {
+        --page-padding-top: 4rem;
+        --page-padding-bottom: 4rem;
+      }
+
+      [data-layout="square"] {
+        --page-padding-top: 4rem;
+        --page-padding-bottom: 4rem;
+      }
+
+      [data-layout="landscape"] {
+        --page-padding-top: 4rem;
+        --page-padding-bottom: 4rem;
+      }
+
+      html {
+        font-size: 16px;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: var(--page-width); /* Use the injected width */
+        height: var(--page-height); /* Use the injected height */
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        font-size: 1rem;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        background: var(--primary-color);
+        word-break: break-word;
+        color: var(--text-color);
+      }
+      .inner {
+        padding: var(--page-padding-top) 0 var(--page-padding-bottom) 0;
+      }
+      p {
+        font-size: 4rem;
+        line-height: 1.3;
+        color: var(--text-color);
+      }
+      .properties .property {
+      }
+      .properties .property.property--title {
+        color: var(--text-color);
+        font-size: 7rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+      }
+      .properties .property.property--tagline {
+        color: var(--text-color);
+        font-family: "Times New Roman", Times, serif;
+        font-size: 4rem;
+      }
+
+      footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--text-color);
+        opacity: 0.5;
+      }
+      footer .caption {
+        font-size: 3rem;
+        padding: 0 0 var(--page-padding-bottom) 4rem;
+        color: var(--text-color);
+      }
+      footer .logo {
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        padding: 0 4rem var(--page-padding-bottom) 0;
+        fill: var(--text-color);
+      }
+    </style>
+  </head>
+  <body data-layout="${layout}" data-theme="${theme}">
+    <div class="inner">${content}</div>
+    <footer>
+      <div class="caption">PORSCHUETZ.SUBSTACK.COM</div>
+      <div class="logo">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          shape-rendering="geometricPrecision"
+          text-rendering="geometricPrecision"
+          image-rendering="optimizeQuality"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          viewBox="0 0 448 511.471"
+        >
+          <path
+            fill="currentColor"
+            d="M0 0h448v62.804H0V0zm0 229.083h448v282.388L223.954 385.808 0 511.471V229.083zm0-114.542h448v62.804H0v-62.804z"
+          />
+        </svg>
+      </div>
+    </footer>
+  </body>
+</html>
